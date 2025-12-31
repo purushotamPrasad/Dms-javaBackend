@@ -39,10 +39,15 @@
 #logging:
 #  level:
 #    org.springframework.security: DEBUG
-
-
+#
+#
+server:
+  port: ${SERVER_PORT:8085}
 
 spring:
+  application:
+    name: subscription-panel
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -54,27 +59,26 @@ spring:
           auth: true
           starttls:
             enable: true
+
   datasource:
-   url: jdbc:postgresql://${POSTGRES_HOST:postgres}:${POSTGRES_PORT:5432}/subscriptiondb
-   username: ${POSTGRES_USER:keycloak}
-   password: ${POSTGRES_PASSWORD:root}
-   driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST:postgres}:${POSTGRES_PORT:5432}/subscriptiondb
+    username: ${POSTGRES_USER:keycloak}
+    password: ${POSTGRES_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-   hibernate:
-     ddl-auto: update
-   properties:
-     hibernate:
-       dialect: org.hibernate.dialect.PostgreSQLDialect
-
-       application:
-         name: subscription-panel
-
-server:
- port: ${SERVER_PORT:8085}
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 eureka:
- client:
-   serviceUrl:
-     defaultZone: ${EUREKA_URL:http://discovery-server:8761/eureka/}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://discovery-server:8761/eureka/}
+
+logging:
+  level:
+    org.springframework.security: INFO
 

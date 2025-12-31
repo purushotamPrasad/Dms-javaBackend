@@ -5,9 +5,9 @@ RUN mvn -B -DskipTests package -DskipITs
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-COPY --from=build /app/target/*.jar /app/app.jar
+COPY --from=build /app/api-gateway/target/*.jar /app/app.jar
 COPY wait-for.sh /wait-for.sh
-RUN chmod +x /wait-for.sh && apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
+RUN chmod +x /wait-for.sh && apt-get update && apt-get install -y netcat-openbsd && rm -rf /var/lib/apt/lists/*
 ENV SERVER_PORT=8081
 EXPOSE 8081
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s CMD curl -f http://localhost:${SERVER_PORT}/actuator/health || exit 1

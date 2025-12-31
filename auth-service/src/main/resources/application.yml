@@ -32,11 +32,11 @@ spring:
             scope: openid
         provider:
           keycloak:
-            issuer-uri: https://auth.qssence.com/realms/authrealm
+            issuer-uri: http://keycloak:8080/realms/authrealm
             user-name-attribute: preferred_username
       resource-server:
         jwt:
-          issuer-uri: https://auth.qssence.com/realms/authrealm
+          issuer-uri: http://keycloak:8080/realms/authrealm
 
 aws:
   access-key: ${AWS_ACCESS_KEY:}

@@ -33,8 +33,7 @@ services:
       POSTGRES_DB: keycloakdb
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
+      - ./postgres-init:/docker-entrypoint-initdb.d
     networks:
       - dms-net
 
@@ -62,8 +61,8 @@ services:
 
   discovery-server:
     build:
-      context: ./discovery-server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: discovery-server/Dockerfile
     environment:
       SERVER_PORT: 8761
       EUREKA_HOST: discovery-server
@@ -78,8 +77,8 @@ services:
 
   api-gateway:
     build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: api-gateway/Dockerfile
     environment:
       SERVER_PORT: 8081
       EUREKA_URL: http://discovery-server:8761/eureka/
@@ -95,8 +94,8 @@ services:
 
   auth-service:
     build:
-      context: ./auth-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: auth-service/Dockerfile
     environment:
       SERVER_PORT: 8082
       EUREKA_URL: http://discovery-server:8761/eureka/
@@ -114,14 +113,13 @@ services:
       - kafka
       - discovery-server
       - postgres
-      - keycloak
     networks:
       - dms-net
 
   audit-trail-service:
     build:
-      context: ./audit-trail-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: audit-trail-service/Dockerfile
     environment:
       SERVER_PORT: 8083
       EUREKA_URL: http://discovery-server:8761/eureka/
@@ -140,8 +138,8 @@ services:
 
   document-initiation-service:
     build:
-      context: ./document-initiation-service
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: document-initiation-service/Dockerfile
     environment:
       SERVER_PORT: 8084
       EUREKA_URL: http://discovery-server:8761/eureka/
@@ -162,8 +160,8 @@ services:
 
   subscription-panel:
     build:
-      context: ./subscription-panel
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: subscription-panel/Dockerfile
     environment:
       SERVER_PORT: 8085
       EUREKA_URL: http://discovery-server:8761/eureka/
