@@ -1,4 +1,4 @@
-package com.qssence.backend.auth.config;
+package com.qssence.backend.authservice.config;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
