@@ -1,4 +1,4 @@
-package com.qssence.backend.authservice.config;
+package com.qssence.backend.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,9 +51,20 @@ public class SecurityConfig {
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/login", "/api/v1/forgot-password", "/api/v1/reset-password").permitAll()
-                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated())
+        // ✅ Docker / K8s health checks (VERY IMPORTANT)
+	        .requestMatchers("/actuator/**").permitAll()
+
+        // existing public endpoints
+        	.requestMatchers(
+                	"/api/v1/auth/login",
+                	"/api/v1/forgot-password",
+                	"/api/v1/reset-password"
+       		 ).permitAll()
+
+        	.requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+        	.anyRequest().authenticated()
+		)
+
                 .sessionManagement(session -> session
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)

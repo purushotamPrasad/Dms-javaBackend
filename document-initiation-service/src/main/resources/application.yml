@@ -14,12 +14,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://auth.qssence.com/realms/authrealm
+          issuer-uri: http://keycloak:8080/realms/authrealm
           # Or, if needed:
           # jwk-set-uri: https://auth.qssence.com/realms/authrealm/protocol/openid-connect/certs
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:postgres}:${POSTGRES_PORT:5432}/document-initiation
+    url: jdbc:postgresql://${POSTGRES_HOST:postgres}:${POSTGRES_PORT:5432}/keycloakdb
     username: ${POSTGRES_USER:keycloak}
     password: ${POSTGRES_PASSWORD:root}
     driver-class-name: org.postgresql.Driver

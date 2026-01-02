@@ -82,8 +82,8 @@ services:
     environment:
       SERVER_PORT: 8081
       EUREKA_URL: http://discovery-server:8761/eureka/
-      KEYCLOAK_ISSUER: http://keycloak:8080/realms/QssenceRealm
-      KEYCLOAK_JWK_URI: http://keycloak:8080/realms/QssenceRealm/protocol/openid-connect/certs
+      KEYCLOAK_ISSUER: http://keycloak:8080/realms/authrealm
+      KEYCLOAK_JWK_URI: http://keycloak:8080/realms/authrealm/protocol/openid-connect/certs
       WAIT_FOR: discovery-server:8761
     ports:
       - '8081:8081'

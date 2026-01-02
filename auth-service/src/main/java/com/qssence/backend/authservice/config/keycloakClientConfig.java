@@ -3,6 +3,7 @@ package com.qssence.backend.authservice.config;
 
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,10 +13,13 @@ import java.security.NoSuchAlgorithmException;
 @Configuration
 public class keycloakClientConfig {
 
+	@Value("${keycloak.server-url:http://keycloak:8080}")
+        private String keycloakServerUrl;
+
         @Bean
         public Keycloak keycloak() {
             return KeycloakBuilder.builder()
-                   .serverUrl("https://auth.qssence.com")
+                   .serverUrl(keycloakServerUrl)
                    .realm("authrealm")  // Assuming this is a fixed value and not read from YAML
                    .clientId("auth-client")
                 //   .clientSecret("NahPuomBpi2nQJWXwjpdRyRSCBgCFVoN")

@@ -72,6 +72,14 @@ keycloak:
 subscription:
   panel:
     decode-url: ${SUBSCRIPTION_PANEL_URL:http://subscription-panel:8085/api/v2/licenses/decode/}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
 
 
 
