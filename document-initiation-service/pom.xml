@@ -94,11 +94,6 @@
 			<version>1.18.32</version>
 			<optional>true</optional>
 		</dependency>
-		<!-- MongoDB -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
 
 		<!-- Logback or SLF4J -->
 		<dependency>

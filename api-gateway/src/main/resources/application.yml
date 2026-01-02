@@ -83,3 +83,6 @@ management:
         include:
           - health
           - configprops
+  health:
+    mongo:
+      enabled: false
